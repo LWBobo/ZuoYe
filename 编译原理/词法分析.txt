@@ -130,10 +130,6 @@ string nton(string str)
     return ss;
 }
 
-int isinarr(char ch , vector<string> vecarr)
-{
-
-}
 
 
 
