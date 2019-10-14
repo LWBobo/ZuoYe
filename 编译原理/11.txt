@@ -1,0 +1,79 @@
+
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+
+
+int main()
+{
+    string readFileIntoString(char * filename);
+
+
+    vector<string>::iterator iter;
+
+    string arr[] = { "public", "private", "protected", "short",
+                "int", "long", "char", "float", "double", "boolean", "static",
+                "void", "for","while" ,"return","continue"};
+    vector<string>keywordArr(arr,arr+16);
+
+     string operatorArr[] = { "+", "-", "*", "/", "%", "=", ">", "<", "&" };
+     vector<string>Operators(operatorArr,operatorArr+9);
+
+      string boundaryArr[] = { "{", "}" , "[" , "]" ,
+                "(", ")", ";"  , "."};
+     vector<string>Boundarys(boundaryArr,boundaryArr+8);
+      string SpaceArr[] = { " ", "\t", "\n" };
+       vector<string>Spaces(SpaceArr,SpaceArr+3);
+
+    for(int i = 0 ; i < keywordArr.size(); i++){
+        cout << keywordArr.at(i) << " " ;
+    }
+    cout << endl;
+    for(int i = 0 ; i < Operators.size(); i++){
+        cout << Operators.at(i) << " " ;
+    }
+    cout << endl;
+    for(int i = 0 ; i < Boundarys.size(); i++){
+        cout << Boundarys.at(i) << " " ;
+    }
+        cout << endl;
+     for(int i = 0 ; i < Spaces.size(); i++){
+        cout << Spaces.at(i) << "*" ;
+    }
+
+
+        iter = find(keywordArr.begin(), keywordArr.end(),"return");
+
+        if(iter != keywordArr.end()){
+            cout << "in" ;
+        }
+
+
+    string str = readFileIntoString("D:\11.txt");
+    cout << str;
+
+
+
+
+    return 0;
+}
+
+
+string readFileIntoString(char * filename)
+{
+ifstream ifile(filename);
+//将文件读入到ostringstream对象buf中
+ostringstream buf;
+char ch;
+while(buf&&ifile.get(ch))
+buf.put(ch);
+//返回与流对象buf关联的字符串
+return buf.str();
+}
+
+

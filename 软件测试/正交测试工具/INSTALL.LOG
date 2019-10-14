@@ -1,0 +1,28 @@
+***  Installation Started 11/24/2012 1:10  ***
+Title: 正交设计助手IIv3.1(专业版) 安装
+Source: E:\soft\zjzs.exe | 11-24-2012 | 01:10:24 | 1371602
+Made Dir: C:\Program Files\sharetop
+Made Dir: C:\Program Files\sharetop\oea_v31_p
+File Copy: C:\Program Files\sharetop\oea_v31_p\UNWISE.EXE | 11-30-2001 | 12:30:22 | | 164872 | 187893ff
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\正交设计助手IIv3.1(专业版)
+RegDB Val: 正交设计助手IIv3.1(专业版)
+RegDB Name: DisplayName
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\正交设计助手IIv3.1(专业版)
+RegDB Val: C:\PROGRA~1\sharetop\OEA_V3~1\UNWISE.EXE C:\PROGRA~1\sharetop\OEA_V3~1\INSTALL.LOG
+RegDB Name: UninstallString
+RegDB Root: 2
+File Copy: C:\Program Files\sharetop\oea_v31_p\AnalyseLib.dll | 09-06-2001 | 18:14:48 | | 159744 | 7813f10c
+File Copy: C:\Program Files\sharetop\oea_v31_p\blend.exe | 10-06-2002 | 15:27:22 | | 401408 | 4ad5aa65
+File Copy: C:\Program Files\sharetop\oea_v31_p\btable.xml | 05-25-2003 | 13:09:54 | | 410 | d0a7f7d6
+File Copy: C:\Program Files\sharetop\oea_v31_p\DesignLib.dll | 12-31-1999 | 19:35:48 | | 113152 | a17bf66b
+File Copy: C:\Program Files\sharetop\oea_v31_p\latin.chm | 05-25-2003 | 13:07:56 | | 20563 | e9d1c194
+File Copy: C:\Program Files\sharetop\oea_v31_p\latin.exe | 05-25-2003 | 13:08:58 | 2.3.0.9 | 653312 | e7e536c5
+File Copy: C:\Program Files\sharetop\oea_v31_p\readme.txt | 10-04-2002 | 21:50:32 | | 756 | 55507f1b
+Shell Link: C:\Documents and Settings\Administrator\「开始」菜单\程序\正交设计助手\正交设计助手II(专业版).lnk
+Link Info: C:\Program Files\sharetop\oea_v31_p\latin.exe | C:\PROGRA~1\sharetop\OEA_V3~1 |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Administrator\「开始」菜单\程序\正交设计助手\在线帮助.lnk
+Link Info: C:\Program Files\sharetop\oea_v31_p\latin.chm | C:\PROGRA~1\sharetop\OEA_V3~1 |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Administrator\「开始」菜单\程序\正交设计助手\混合表编辑器.lnk
+Link Info: C:\Program Files\sharetop\oea_v31_p\blend.exe | C:\PROGRA~1\sharetop\OEA_V3~1 |  | 0 | 1 | 0 | 
+User Rights: Admin
