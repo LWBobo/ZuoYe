@@ -6,3 +6,10 @@
 	<windows.h>
 	<fstream>
 
+1571289942 source:g:\www\git\zuoye\编译原理\后缀表达式\main.cpp
+	<iostream>
+	<stack>
+	<math.h>
+	<windows.h>
+	<fstream>
+

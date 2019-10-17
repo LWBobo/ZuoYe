@@ -18,8 +18,8 @@ int f(const char str){
 	return yxj;
 
 }
-    void test(){
-        char c[100]="3+5-3+5*2";
+char * test(){
+        char c[100]="3+5-3+5*2#";
 	//char c[100]="1+((2+3)*4)-5";
 	int lenc=strlen(c);
 	//读取字符串
@@ -42,6 +42,10 @@ int f(const char str){
 			}
 		}
 		}else{
+		    if(c[i] == '#')
+            {
+                continue ;
+            }
 			if(c[i]=='('){			//直接读入
 				s1.push(c[i]);
 			}else{
@@ -69,15 +73,19 @@ int f(const char str){
 		s1.push(c);
 		s2.pop();
 	}
+        string  ss;
     	while(!s1.empty()){
-		cout<<s1.top();
+        ss += s1.top();
 		s1.pop();
 	}
+	char *s = (char *) ss.c_str();
+
+	return s;
 
     }
 
 int main(){
 
-    test();
+    cout <<  test();
 	return 0;
 }

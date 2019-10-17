@@ -6,6 +6,8 @@
 
 
 using namespace std;
+stack<char> s1;		//运算符栈
+stack<char> s2;		//中间结果栈
 
 bool Number(char ch)//判断是否为数字，是则返回true
 {
@@ -77,6 +79,19 @@ int GetPriority(char sy)//设置各个操作符的优先级
 }
 
 
+int f(const char str){
+	int yxj;		//优先级
+	switch(str){
+		case '*':yxj=5;break;
+		case '/':yxj=5;break;
+		case '+':yxj=4;break;
+		case '-':yxj=4;break;
+	}
+	return yxj;
+
+}
+
+
 void AddSpace(char*& arr)//给转成的后缀表达式的数字和符号添加空格，区分每个字符
 {
     *arr = ' ';
@@ -85,68 +100,72 @@ void AddSpace(char*& arr)//给转成的后缀表达式的数字和符号添加空格，区分每个字符
 
 char* GetBack()//获取后缀表达式的函数
 {
-    char* middle = new char[30];
+    char* c = new char[30];
     char* back = new char[30];
     char* backend = back;
-    InPut(middle);
-    stack<char> s;
-    s.push('#');
-    while (*middle)
-    {
-        if (Number(*middle) || *middle == '.')
-        {
-            *back = *middle;
-            back++, middle++;
-        }
-        else
-        {
-            if (Number(*(back - 1)))
+    InPut(c);
+   //char c[100]="1+((2+3)*4)-5";
+	int lenc=strlen(c);
+	//读取字符串
+	for(int i=0;i<lenc;i++){
+		if(c[i]>='0'&&c[i]<='9'){		//如果是数字，直接压入s2
+			s2.push(c[i]);
+		}else if(c[i]=='+'||c[i]=='-'||c[i]=='*'||c[i]=='/'){	//如果是运算符
+			while(true){
+			if(s1.empty()||s1.top()=='('){		//s1为空 ，或者栈顶为(
+				s1.push(c[i]);
+				break;
+			}else if(f(c[i])>f(s1.top())){		//当前运算符优先级大于s1栈顶运算符优先级
+				s1.push(c[i]);
+				break;
+			}
+			else{								//小于等于
+				char cc=s1.top();
+				s1.pop();
+				s2.push(cc);
+			}
+		}
+		}else{
+		    if(c[i] == '#')
+            {
+                continue ;
+            }
+			if(c[i]=='('){			//直接读入
+				s1.push(c[i]);
+			}else{
+				while(s1.top()!='('){
+					char ccc=s1.top();
+					s1.pop();
+					s2.push(ccc);
+				}
+				s1.pop();
+			}
+		}
+	}
+        while(!s1.empty()){
+                char cccc=s1.top();
+                s2.push(cccc);
+                s1.pop();
+            }
 
-            {
-                //*back = ' ';
-                //back++;
-                AddSpace(back);
-            }
-            if (*middle == ')')
-            {
-                while (s.top() != '(')
-                {
-                    *back = s.top();
-                    s.pop();
-                    back++;
-                    AddSpace(back);
-                }
-                middle++;
-                s.pop();//抛弃左括号
-            }
-            else if (*middle == '(')//遇到左括号，则进入栈
-            {
-                s.push(*middle); middle++;
-            }
-            else if (GetPriority(*middle) > GetPriority(s.top()))//如果栈内的操作符优先级高于栈外的优先级，则入栈
-            {
-                s.push(*middle); middle++;
-            }
-            else if (GetPriority(*middle) <= GetPriority(s.top()))
-                                                     //如果栈内的操作符优先级低于或等于栈外的优先级，输出栈内的符号，并入栈栈外的符号
-            {
-                *back = s.top();
-                s.pop();
-                s.push(*middle);
-                back++; middle++;
-                AddSpace(back);
-            }
-        }
-    }
-    while (s.top() != '#')//中缀表达式遍历完成，但是=栈中还有符号存在，一一出栈输出
-    {
-        AddSpace(back);
-        *back = s.top();
-        s.pop(); back++;
-    }
-    *back = '\0';
-    cout << "The Back Is: " << backend << endl;
-    return backend;
+	//while(!s2.empty()){	//结果是逆序的
+	//	cout<<s2.top();
+	//	s2.pop();
+	//}
+	while(!s2.empty()){
+		char c=s2.top();
+		s1.push(c);
+		s2.pop();
+	}
+        string  ss;
+    	while(!s1.empty()){
+        ss += s1.top();
+        ss += " ";
+		s1.pop();
+	}
+	char *s = (char *) ss.c_str();
+
+	return s;
 }
 
 double GetNumber(char*& arr)
@@ -228,7 +247,13 @@ void FunTest()
 
 int main()
 {
-    FunTest();
+ //   FunTest();
+
+    char * str = GetBack();
+    cout << "str :"<< str << endl;
+    cout << "*str :" <<*str << endl;
+    double num = CountBack(str);
+    cout << num << endl;
     system("pause");
     return 0;
 }
