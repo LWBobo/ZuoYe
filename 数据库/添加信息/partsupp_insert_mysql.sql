@@ -18,3 +18,5 @@ insert into partsupp (partkey,suppkey,availqty,supplycost,comment) values
 (11009,21008,2300,545,'无');
 insert into partsupp (partkey,suppkey,availqty,supplycost,comment) values
 (11010,21010,1700,585,'无');
+insert into partsupp (partkey,suppkey,availqty,supplycost,comment) values
+(11011,21011,1000,800,'无');

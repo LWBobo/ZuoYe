@@ -6,3 +6,5 @@ insert into customer (custkey,name,address,nationkey,phone,phone,mktsegment,comm
 (31003,'唯品会','中国',86,'4006789888',3500000,'中国市场','无');
 insert into customer (custkey,name,address,nationkey,phone,acctbal,mktsegment,comment) values
 (31004,'亚马逊','美国',1,'4008105666',5000000,'海外市场','无');
+insert into customer (custkey,name,address,nationkey,phone,acctbal,mktsegment,comment) values
+(31005,'拼多多','中国',86,'4008105656',3500000,'中国市场','无');

@@ -26,3 +26,5 @@ insert into nation (nationkey,name,comment) values
 (420,'捷克','无');
 insert into nation (nationkey,name,comment) values
 (1,'美国','无');
+insert into nation (nationkey,name,comment) values
+(82,'韩国','无');

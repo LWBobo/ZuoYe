@@ -31,6 +31,9 @@ container char(10),/*包装*/
 retailprice real,/*零售价格*/
 comment  varchar(23)/*备注*/);
 
+
+
+
 create table Partsupp(/*零件供应联系表*/
 partkey integer references part(partkey),/*零件编号*/
 suppkey integer references supplier(suppkey),/*供应商编号*/

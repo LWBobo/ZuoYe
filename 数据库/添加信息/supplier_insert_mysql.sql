@@ -28,3 +28,7 @@ insert into supplier (suppkey,name,address,nationkey,phone,acctbal,comment) valu
 insert into supplier (suppkey,name,address,nationkey,phone,acctbal,comment) values
 (21010,'荷兰皇家飞利浦公司','荷兰阿姆斯特丹',31,'4008800008',52000000,
 '飞利浦，创新让生活更美好');
+insert into supplier (suppkey,name,address,nationkey,phone,acctbal,comment) values
+(21011,'罗技有限公司','瑞士',41,'8008200338',54126000,
+'使用罗技 G 提供的高性能游戏设备，时刻保持出色游戏状态');
+

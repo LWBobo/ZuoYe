@@ -28,3 +28,9 @@ insert into part values(
 insert into part values(
 11010,'飞利浦 27英寸IPS技术屏 广视角 低蓝光爱眼 可壁挂','飞利浦','PHILIPS','电脑零件',80,'箱装',650,'皇家品质，全球鉴定'
 );
+insert into part values(
+11011,'罗技G903电竞游戏双模无线鼠标g903hero powerplay充电','罗技','Logitech','电脑零件',80,'盒装',830,'高性能，持久电量,通用设计'
+);
+insert into part values(
+22222,'樱桃CHERRY MX9.0背光RGB魔兽世界游戏机械键盘','樱桃','CHERRY','电脑零件',65,'盒装',1500,'流光溢彩,奢美樱桃'
+);
