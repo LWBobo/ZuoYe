@@ -1,83 +1,92 @@
-create database TPCH
-USE TPCH
+ï»¿create database TPCH;
+USE TPCH;
 
-create table region(/*µØÇø±í*/
-regionkey  integer primary key ,/*µØÇø±àºÅ*/
-name char(25),/*µØÇøÃû³Æ*/
-comment  varchar(152)/*±¸×¢*/);
+create table region(/*åœ°åŒºè¡¨*/
+regionkey  integer primary key ,/*åœ°åŒºç¼–å·*/
+name char(25),/*åœ°åŒºåç§°*/
+comment  varchar(152)/*å¤‡æ³¨*/);
 
-create table nation(/*¹ú¼Ò±í*/
-nationkey  integer primary key ,/*¹ú¼Ò±àºÅ*/
-name char(25),/*¹ú¼ÒÃû³Æ*/
-comment  varchar(152)/*±¸×¢*/);
+create table nation(/*å›½å®¶è¡¨*/
+nationkey  integer primary key ,/*å›½å®¶ç¼–å·*/
+name char(25),/*å›½å®¶åç§°*/
+comment  varchar(152)/*å¤‡æ³¨*/);
 
-create table Supplier(/*¹©Ó¦ÉÌ»ù±¾±í*/
-suppkey  integer primary key ,/*¹©Ó¦ÉÌ±àºÅ*/
-name char(25),/*¹©Ó¦ÉÌÃû³Æ*/
-address varchar(40),/*¹©Ó¦ÉÌµØÖ·*/
-nationkey integer references nation(nationkey),/*¹ú¼Ò±àºÅ*/
-phone char(15),/*¹©Ó¦ÉÌµç»°*/
-acctbal real,/*¹©Ó¦ÉÌÕË»§Óà¶î*/
-comment  varchar(101)/*±¸×¢*/);
+create table Supplier(/*ä¾›åº”å•†åŸºæœ¬è¡¨*/
+suppkey  integer primary key ,/*ä¾›åº”å•†ç¼–å·*/
+name char(25),/*ä¾›åº”å•†åç§°*/
+address varchar(40),/*ä¾›åº”å•†åœ°å€*/
+nationkey integer ,/*å›½å®¶ç¼–å·*/
+phone char(15),/*ä¾›åº”å•†ç”µè¯*/
+acctbal real,/*ä¾›åº”å•†è´¦æˆ·ä½™é¢*/
+comment  varchar(101),/*å¤‡æ³¨*/
+foreign key (nationkey) references nation(nationkey)
+);
 
-create table part(/*Áã¼ş»ù±¾±í*/
-partkey  integer primary key ,/*Áã¼ş±àºÅ*/
-name varchar(55),/*Áã¼şÃû³Æ*/
-mfgr char(25),/*ÖÆÔì³§*/
-brand char(10),/*Æ·ÅÆ*/
-type varchar(25),/*Áã¼şÀàĞÍ*/
-size integer,/*³ß´ç*/
-container char(10),/*°ü×°*/
-retailprice real,/*ÁãÊÛ¼Û¸ñ*/
-comment  varchar(23)/*±¸×¢*/);
+create table part(/*é›¶ä»¶åŸºæœ¬è¡¨*/
+partkey  integer primary key ,/*é›¶ä»¶ç¼–å·*/
+name varchar(55),/*é›¶ä»¶åç§°*/
+mfgr char(25),/*åˆ¶é€ å‚*/
+brand char(10),/*å“ç‰Œ*/
+type varchar(25),/*é›¶ä»¶ç±»å‹*/
+size integer,/*å°ºå¯¸*/
+container char(10),/*åŒ…è£…*/
+retailprice real,/*é›¶å”®ä»·æ ¼*/
+comment  varchar(23)/*å¤‡æ³¨*/);
 
-create table Partsupp(/*Áã¼ş¹©Ó¦ÁªÏµ±í*/
-partkey integer references part(partkey),/*Áã¼ş±àºÅ*/
-suppkey integer references supplier(suppkey),/*¹©Ó¦ÉÌ±àºÅ*/
-availqty integer,/*¿ÉÓÃÊıÁ¿*/
-supplycost real,/*¹©Ó¦¼Û¸ñ*/
-comment varchar(199),/*±¸×¢*/
-primary key (partkey,suppkey)/*¶¨ÒåÖ÷Âë£¬±í¼¶Ô¼Êø*/);
+create table Partsupp(/*é›¶ä»¶ä¾›åº”è”ç³»è¡¨*/
+partkey integer ,/*é›¶ä»¶ç¼–å·*/
+suppkey integer ,/*ä¾›åº”å•†ç¼–å·*/
+availqty integer,/*å¯ç”¨æ•°é‡*/
+supplycost real,/*ä¾›åº”ä»·æ ¼*/
+comment varchar(199),/*å¤‡æ³¨*/
+primary key (partkey,suppkey),/*å®šä¹‰ä¸»ç ï¼Œè¡¨çº§çº¦æŸ*/
+foreign key (partkey) references part(partkey),
+foreign key (suppkey) references supplier(suppkey)
+);
 
-create table Customer(/*¹Ë¿Í±í*/
-custkey  integer primary key,/*¹Ë¿Í±àºÅ*/ 
-name  varchar(25),/*ĞÕÃû*/ 
-address varchar(40),/*µØÖ· */ 
-nationkey  integer references nation(nationkey),/*¹ú¼®±àºÅ*/ 
-phone  char(15),/*µç»°*/ 
-acctbal  real,/*ÕË»§Óà¶î*/ 
-mktsegment  char(10),/*ÊĞ³¡·ÖÇø*/ 
-comment varchar(117)/*±¸×¢*/);
+create table Customer(/*é¡¾å®¢è¡¨*/
+custkey  integer primary key,/*é¡¾å®¢ç¼–å·*/ 
+name  varchar(25),/*å§“å*/ 
+address varchar(40),/*åœ°å€ */ 
+nationkey  integer ,/*å›½ç±ç¼–å·*/ 
+phone  char(15),/*ç”µè¯*/ 
+acctbal  real,/*è´¦æˆ·ä½™é¢*/ 
+mktsegment  char(10),/*å¸‚åœºåˆ†åŒº*/ 
+comment varchar(117),/*å¤‡æ³¨*/
+foreign key (nationkey) references nation(nationkey)
+);
 
-create table Orders(/*¶©µ¥±í*/
-orderkey  integer primary key,/*¶©µ¥±àºÅ*/
-custkey  integer references customer(custkey),/*¹Ë¿Í±àºÅ*/
-orderstatus  char(1),/*¶©µ¥×´Ì¬*/
-totalprice  real,/*¶©µ¥×Ü½ğ¶î*/
-orderdate date ,/*¶©µ¥ÈÕÆÚ*/
-orderpriority  char(15),/*¶©µ¥ÓÅÏÈ¼¶±ğ*/
-clerk  char(15),/*¼ÇÕËÔ±*/
-shippriority  integer,/*ÔËÊäÓÅÏÈ¼¶±ğ*/
-comment  varchar(79),/*±¸×¢*/
-/*toalprice=sum£¨lineitem.extendedprice*(1-lineitem.discount)*(1+lineitem.tax)*/);
+create table Orders(/*è®¢å•è¡¨*/
+orderkey  integer primary key,/*è®¢å•ç¼–å·*/
+custkey  integer ,/*é¡¾å®¢ç¼–å·*/
+orderstatus  char(1),/*è®¢å•çŠ¶æ€*/
+totalprice  real,/*è®¢å•æ€»é‡‘é¢*/
+orderdate date ,/*è®¢å•æ—¥æœŸ*/
+orderpriority  char(15),/*è®¢å•ä¼˜å…ˆçº§åˆ«*/
+clerk  char(15),/*è®°è´¦å‘˜*/
+shippriority  integer,/*è¿è¾“ä¼˜å…ˆçº§åˆ«*/
+comment  varchar(79),/*å¤‡æ³¨*/
+/*toalprice=sumï¼ˆlineitem.extendedprice*(1-lineitem.discount)*(1+lineitem.tax)*/
+foreign key (custkey) references customer(custkey)
+);
 
-create table Lineitem(/*¶©µ¥Ã÷Ï¸±í*/
-orderkey  integer references orders(orderkey),/*¶©µ¥±àºÅ*/
-partkey  integer references part(partkey),/*Áã¼ş±àºÅ*/
-suppkey  integer references supplier(suppkey),/*¹©Ó¦ÉÌ±àºÅ*/
-linenumber integer,/*ÊıÁ¿*/
-quantity  real,/*¶©µ¥×Ü½ğ¶î*/
-extendedprice real,/*¶©µ¥Ã÷Ï¸¼Û¸ñ*/
-discount real,/*ÕÛ¿Û[0.00,1.00] */
-tax real,/*Ë°ÂÊ[0.00,0.08] */
-returnflag char(1) ,/* ÍË»õ±ê¼Ç*/
-linestatus  char(1),/*¶©µ¥Ã÷Ï¸×´Ì¬*/
-shipdate  date,/*×°ÔËÈÕÆÚ*/
-commitdate  date,/*Î¯ÍĞÈÕÆÚ*/
-receiptdate   date,/*Ç©ÊÕÈÕÆÚ*/
-shipinstruct  char(25),/*×°ÔËËµÃ÷£¬Èçdeliver in person*/
-shipmode  char(10),/*×°ÔË·½Ê½£¬Èç¿ÕÔË¡¢Â½ÔË¡¢ÌúÔËºÍº£ÔË*/
-comment  varchar(44),/*±¸×¢*/
+create table Lineitem(/*è®¢å•æ˜ç»†è¡¨*/
+orderkey  integer references orders(orderkey),/*è®¢å•ç¼–å·*/
+partkey  integer ,/*é›¶ä»¶ç¼–å·*/
+suppkey  integer ,/*ä¾›åº”å•†ç¼–å·*/
+linenumber integer,/*æ•°é‡*/
+quantity  real,/*è®¢å•æ€»é‡‘é¢*/
+extendedprice real,/*è®¢å•æ˜ç»†ä»·æ ¼*/
+discount real,/*æŠ˜æ‰£[0.00,1.00] */
+tax real,/*ç¨ç‡[0.00,0.08] */
+returnflag char(1) ,/* é€€è´§æ ‡è®°*/
+linestatus  char(1),/*è®¢å•æ˜ç»†çŠ¶æ€*/
+shipdate  date,/*è£…è¿æ—¥æœŸ*/
+commitdate  date,/*å§”æ‰˜æ—¥æœŸ*/
+receiptdate   date,/*ç­¾æ”¶æ—¥æœŸ*/
+shipinstruct  char(25),/*è£…è¿è¯´æ˜ï¼Œå¦‚deliver in person*/
+shipmode  char(10),/*è£…è¿æ–¹å¼ï¼Œå¦‚ç©ºè¿ã€é™†è¿ã€é“è¿å’Œæµ·è¿*/
+comment  varchar(44),/*å¤‡æ³¨*/
 primary key(orderkey,linenumber),
 foreign key(partkey,suppkey)references partsupp(partkey,suppkey));
-/*ÆäÖĞ£¬¶©µ¥Ã÷Ï¸¼Û¸ñextendedprice=quantity*part.retailprice*/
+/*å…¶ä¸­ï¼Œè®¢å•æ˜ç»†ä»·æ ¼extendedprice=quantity*part.retailprice*/
