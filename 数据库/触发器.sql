@@ -18,7 +18,7 @@ create trigger trigger2
   
    insert into lineitem (orderkey,partkey,suppkey,linenumber,quantity,extendedprice,discount,
   tax,returnflag,linestatus,shipdate,commitdate,receiptdate,shipinstruct,shipmode,comment) values
-  (41006,11007,21007,5000,50002500.0,50002500.0,0.99,0.05,'0','1','2019-10-3','2019-10-3','2019-10-5','打包发货',
+  (41006,11007,21007,3000,50002500.0,50002500.0,0.99,0.05,'0','1','2019-10-3','2019-10-3','2019-10-5','打包发货',
   '空运','无');
   
   
@@ -36,9 +36,11 @@ create trigger trigger2
 		select availqty into availqty1 from partsupp
 			where partkey = new.partkey and suppkey = new.suppkey; 
 		if 
-		new.linenumber > availqty1
-	then
-		signal sqlstate 'ERROR' set message_text = '库存不足啦!';
+			new.linenumber > availqty1
+		then
+			signal sqlstate 'ERROR' set message_text = '库存不足啦!';
+		else 
+			update partsupp set availqty = availqty - new.linenumber where partkey = new.partkey and suppkey = new.suppkey; 
 	end if;
    end;
   
