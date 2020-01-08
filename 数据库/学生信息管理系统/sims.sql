@@ -11,7 +11,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 02/01/2020 14:01:36
+ Date: 08/01/2020 11:57:46
 */
 
 SET NAMES utf8mb4;
@@ -71,7 +71,7 @@ INSERT INTO `course` VALUES ('5003002', '数据库系统概论', 5, '2019-09-20'
 INSERT INTO `course` VALUES ('5003003', '离散数学', 5, '2018-03-05', '2018-06-05', 0);
 INSERT INTO `course` VALUES ('5003004', 'JAVA基础', 4, '2018-09-11', '2018-12-14', 0);
 INSERT INTO `course` VALUES ('5003005', '计算机网络', 5, '2019-09-05', '2019-11-20', 1);
-INSERT INTO `course` VALUES ('5003006', 'Linux基础', 4, '2019-09-09', '2019-11-11', 0);
+INSERT INTO `course` VALUES ('5003006', 'Linux基础', 4, '2019-09-09', '2019-11-11', 1);
 
 -- ----------------------------
 -- Table structure for lab
@@ -87,6 +87,7 @@ CREATE TABLE `lab`  (
 -- ----------------------------
 -- Records of lab
 -- ----------------------------
+INSERT INTO `lab` VALUES ('6308', '6308实验室', '六号楼三楼8号教室');
 INSERT INTO `lab` VALUES ('6313', '6313机房', '六号楼三楼13号教室');
 INSERT INTO `lab` VALUES ('6316', '6316机房', '六号楼三楼16号教室');
 
@@ -108,13 +109,14 @@ CREATE TABLE `labclassschedule`  (
   INDEX `lc_name`(`lc_name`) USING BTREE,
   CONSTRAINT `labclassschedule_ibfk_1` FOREIGN KEY (`lc_num`) REFERENCES `labcourse` (`lc_num`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `labclassschedule_ibfk_2` FOREIGN KEY (`lc_name`) REFERENCES `labcourse` (`lc_name`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of labclassschedule
 -- ----------------------------
 INSERT INTO `labclassschedule` VALUES (1, '5003002X', '数据库系统概论上机', 0, 8, 0, 4, 0);
 INSERT INTO `labclassschedule` VALUES (2, '5003005X', '计算机网络上机', 1, 0, 16, 0, 2);
+INSERT INTO `labclassschedule` VALUES (9, '5003006X', 'Linux实验课', 0, 4, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for labcourse
@@ -141,6 +143,7 @@ CREATE TABLE `labcourse`  (
 -- ----------------------------
 INSERT INTO `labcourse` VALUES ('5003002X', '数据库系统概论上机', '5003002', '数据库系统概论', '6313');
 INSERT INTO `labcourse` VALUES ('5003005X', '计算机网络上机', '5003005', '计算机网络', '6316');
+INSERT INTO `labcourse` VALUES ('5003006X', 'Linux实验课', '5003006', 'Linux基础', '6313');
 
 -- ----------------------------
 -- Table structure for msboard
@@ -320,10 +323,15 @@ CREATE TABLE `timetable`  (
 -- ----------------------------
 -- Records of timetable
 -- ----------------------------
-INSERT INTO `timetable` VALUES ('201716040222', '计算机网络上机', '数据库系统概论-3305', NULL, 'JAVA基础-4237', NULL, NULL, 'JAVA基础-4237', NULL, '数据库系统概论上机', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机', NULL, NULL, '数据库系统概论上机', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机', '离散数学-3130', NULL, NULL);
-INSERT INTO `timetable` VALUES ('201716040223', NULL, '数据库系统概论-3305', NULL, NULL, NULL, NULL, NULL, NULL, '数据库系统概论上机', NULL, NULL, NULL, NULL, '离散数学-3130', NULL, NULL, NULL, '数据库系统概论上机', NULL, NULL, '数据库系统概论-3305', NULL, '离散数学-3130', NULL, NULL);
-INSERT INTO `timetable` VALUES ('201716040224', '计算机网络上机', '数据库系统概论-3305', NULL, NULL, NULL, 'JAVA进阶-4436', NULL, NULL, '数据库系统概论上机', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机', NULL, 'JAVA进阶-4436', '数据库系统概论上机', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机', '离散数学-3130', NULL, NULL);
-INSERT INTO `timetable` VALUES ('201716040225', '计算机网络上机', '数据库系统概论-3305', NULL, 'JAVA基础-4237', NULL, NULL, 'JAVA基础-4237', NULL, '数据库系统概论上机', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机', NULL, NULL, '数据库系统概论上机', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机', '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('1001', '计算机网络上机-6316', '数据库系统概论-3305', NULL, 'JAVA基础-4237', NULL, 'JAVA进阶-4436', 'JAVA基础-4237', 'Linux实验课-6313', '数据库系统概论上机-6313', 'Linux基础-4332', '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机-6316', NULL, 'JAVA进阶-4436', '数据库系统概论上机-6313', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机-6316', '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('10010610', NULL, NULL, NULL, 'JAVA基础-4237', NULL, 'JAVA进阶-4436', 'JAVA基础-4237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JAVA进阶-4436', NULL, NULL, NULL, NULL, NULL, NULL, 'JAVAEE实验课-6316', 'JAVAEE实验课-6316');
+INSERT INTO `timetable` VALUES ('10010611', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Linux基础-4332', NULL, NULL, NULL, '离散数学-3130', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('10010612', '计算机网络上机-6316', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '计算机网络-3212', NULL, NULL, NULL, '计算机网络上机-6316', NULL, NULL, NULL, '计算机网络-3212', NULL, NULL, '计算机网络上机-6316', NULL, NULL, NULL);
+INSERT INTO `timetable` VALUES ('10010613', NULL, '数据库系统概论-3305', NULL, NULL, NULL, NULL, NULL, NULL, '数据库系统概论上机', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '数据库系统概论上机', NULL, NULL, '数据库系统概论-3305', NULL, NULL, NULL, NULL);
+INSERT INTO `timetable` VALUES ('201716040222', '计算机网络上机-6316', '数据库系统概论-3305', NULL, 'JAVA基础-4237', NULL, NULL, 'JAVA基础-4237', NULL, '数据库系统概论上机-6313', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机-6316', NULL, NULL, '数据库系统概论上机-6313', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机-6316', '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('201716040223', NULL, '数据库系统概论-3305', NULL, NULL, NULL, NULL, NULL, NULL, '数据库系统概论上机-6313', NULL, NULL, NULL, NULL, '离散数学-3130', NULL, NULL, NULL, '数据库系统概论上机-6313', NULL, NULL, '数据库系统概论-3305', NULL, '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('201716040224', '计算机网络上机-6316', '数据库系统概论-3305', NULL, NULL, NULL, 'JAVA进阶-4436', NULL, NULL, '数据库系统概论上机-6313', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机-6316', NULL, 'JAVA进阶-4436', '数据库系统概论上机-6313', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机-6316', '离散数学-3130', NULL, NULL);
+INSERT INTO `timetable` VALUES ('201716040225', '计算机网络上机-6316', '数据库系统概论-3305', NULL, 'JAVA基础-4237', NULL, NULL, 'JAVA基础-4237', NULL, '数据库系统概论上机-6313', NULL, '计算机网络-3212', NULL, NULL, '离散数学-3130', '计算机网络上机-6316', NULL, NULL, '数据库系统概论上机-6313', '计算机网络-3212', NULL, '数据库系统概论-3305', '计算机网络上机-6316', '离散数学-3130', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user
